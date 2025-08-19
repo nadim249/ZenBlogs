@@ -1,13 +1,14 @@
 import LatestBlogs from "../../Components/LatestBlogs/LatestBlogs"
 import { useNavigate } from 'react-router-dom';
-
 export default function Home() {
   const navigate = useNavigate();
   return (
     <>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-4xl font-bold text-gray-900 mb-6 text-center">Welcome to ZenBlog</h1>
-      <p className="text-gray-700 text-center">
+      <div className="max-w-7xl mx-auto lg:my-4 px-4 sm:px-6 lg:px-8 py-8 bg-sky-200 lg:rounded-2xl">
+      <h1 className="text-4xl font-bold text-gray-900 mb-6 text-center">Welcome to    
+         <span className="text-orange-500"> ZeN</span>
+          <span className="text-blue-600">Blog</span></h1>
+      <p className="text-gray-800 text-center">
         Your one-stop destination for insightful blogs and articles.
       </p>
       <div className="flex justify-center items-center gap-4">

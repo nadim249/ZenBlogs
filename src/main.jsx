@@ -3,8 +3,9 @@ import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router
 import './index.css'
 import Home from './Pages/Home/Home'
 import Blogs from './Components/Blogs/Blogs'
+import Blog from './Components/Blog/Blog'
 import Bookmarks from './Components/Bookmarks/Bookmarks'
-import MainLayout from './layouts/MainLayout'
+import MainLayout from './Layouts/MainLayout'
 
 const router = createBrowserRouter([
         {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
           {
             path: "/blogs",
             element: <Blogs/>
+          },
+          {
+            path: "/blogs/:id",
+            element: <Blog/>
           },
           {
             path: "/bookmarks",

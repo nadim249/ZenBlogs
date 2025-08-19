@@ -3,16 +3,31 @@ import { Link } from 'react-router-dom';
 
 function LatestBlogs() {
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [bookmarks, setBookmarks] = useState(() => {
     const saved = localStorage.getItem('bookmarks');
     return saved ? JSON.parse(saved) : [];
   });
 
   useEffect(() => {
+    setLoading(true);
     fetch('https://dev.to/api/articles?per_page=20&top=7')
-      .then((response) => response.json())
-      .then((data) => setArticles(data))
-      .catch((error) => console.error('Error fetching articles:', error));
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch articles');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setArticles(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching articles:', error);
+        setError(error.message);
+        setLoading(false);
+      });
   }, []);
 
   useEffect(() => {
@@ -33,6 +48,22 @@ function LatestBlogs() {
   const isBookmarked = (articleId) => {
     return bookmarks.some(bookmark => bookmark.id === articleId);
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center min-h-[400px]">
+        <div className="text-red-500 text-xl">{error}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 font-sans">
