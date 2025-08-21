@@ -11,7 +11,7 @@ function Card({ article, isBookmarked, toggleBookmark }) {
       />
       <div className="p-4">
         <div className="flex justify-between items-start">
-          <Link to={`/blogs/${article.id}`} className="text-xl font-semibold mb-2 line-clamp-2 flex-1 mr-2">{article.title}</Link>
+          <Link to={`/blog/${article.id}`} className="text-xl font-semibold mb-2 line-clamp-2 flex-1 mr-2">{article.title}</Link>
           <button
             onClick={() => toggleBookmark(article)}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
