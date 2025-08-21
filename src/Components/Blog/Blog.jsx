@@ -1,49 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
 
 function Blog() {
-  const { id } = useParams();
-  const [blog, setBlog] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetch(`https://dev.to/api/articles/${id}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Blog not found');
-        }
-        return response.json();
-      })
-      .then(data => {
-        setBlog(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, [id]);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="text-red-500 text-xl">{error}</div>
-      </div>
-    );
-  }
-
-  if (!blog) {
-    return null;
-  }
+const blog=useLoaderData()
+if (!blog) return <p>Loading...</p>;
 
   return (
     <div className="max-w-4xl mx-auto px-3 sm:px-6 mt-14 sm:mt-16">
