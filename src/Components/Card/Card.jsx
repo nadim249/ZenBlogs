@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import imagecover from '../../assets/Designer.png'
 
 function Card({ article, isBookmarked, toggleBookmark }) {
   return (
     <div className="max-w-sm bg-white rounded-lg shadow-lg border border-transparent overflow-hidden relative hover:scale-110 hover:border-blue-500">
       <img 
-        src={article.cover_image || 'https://via.placeholder.com/150'} 
+        src={article.cover_image || imagecover} 
         alt={article.title} 
         className="w-full h-48 object-cover sm:object-center"
       />
