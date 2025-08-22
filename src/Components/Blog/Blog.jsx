@@ -1,4 +1,5 @@
 import { useLoaderData, useParams } from 'react-router-dom';
+import imagecover from '../../assets/Designer.png'
 
 function Blog() {
 
@@ -7,11 +8,11 @@ if (!blog) return <p>Loading...</p>;
 
   return (
     <div className="max-w-4xl mx-auto px-3 sm:px-6 mt-14 sm:mt-16">
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">{blog.title}</h1>
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">{blog?.title}</h1>
       <div className="mb-4 sm:mb-6">
         <img 
-          src={blog.cover_image || 'https://via.placeholder.com/800x400'} 
-          alt={blog.title}
+          src={blog?.cover_image || imagecover} 
+          alt={blog?.title}
           className="w-full h-[200px] sm:h-[300px] md:h-[400px] object-cover rounded-lg shadow-lg"
         />
       </div>
